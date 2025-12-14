@@ -37,7 +37,7 @@ const setup = () => {
  * Sets the new user color scheme preference.
  * If the preference has changed, the callback function is executed.
  *
- * @param {"light" | "system" | "dark"} newUserChoice - The new user-selected color scheme.
+ * @param {"light" | "light dark" | "dark"} newUserChoice - The new user-selected color scheme.
  */
 const setUserChoice = (newUserChoice) => {
   // Do not process if the user choice has not changed
