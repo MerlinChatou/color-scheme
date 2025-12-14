@@ -1,15 +1,37 @@
 import systemColorScheme from "@merlin-chatou/system-color-scheme";
 
-
 // User color scheme choice [ "light" | "light dark" | "dark"]
 // Check in local storage first, then set "light dark" as default
-let userChoice = localStorage.getItem('merlin-chatou-color-scheme') || "light dark";
-
+let userChoice;
 
 // Event triggered when then color scheme changes (from user or system)
-const colorSchemeChangedEvent = new CustomEvent("merlin-chatou-color-scheme-changed");
+const colorSchemeChangedEvent = new CustomEvent(
+  "merlin-chatou-color-scheme-changed"
+);
 
 
+/**
+ * Initialize module 
+ * Check in local storage first, then set "light dark" as default
+ * Add event listener on system color scheme change
+ */
+const setup = () => {
+  // User color scheme choice [ "light" | "light dark" | "dark"]
+  // Check in local storage first, then set "light dark" as default
+  userChoice =
+    localStorage.getItem("merlin-chatou-color-scheme") || "light dark";
+
+  /**
+   * Trigger the color scheme change event on system change
+   * The event is only triggered if the user choice is system ("light dark")
+   */
+  systemColorScheme.addEventListenerOnChange((isDark) => {
+    // If the user choice is not system color scheme, exit
+    if (userChoice == "light dark") return;
+    // Otherwise, trigger the event on system settings change
+    document.dispatchEvent(colorSchemeChangedEvent);
+  });
+};
 
 /**
  * Sets the new user color scheme preference.
@@ -17,33 +39,28 @@ const colorSchemeChangedEvent = new CustomEvent("merlin-chatou-color-scheme-chan
  *
  * @param {"light" | "system" | "dark"} newUserChoice - The new user-selected color scheme.
  */
-
 const setUserChoice = (newUserChoice) => {
-
   // Do not process if the user choice has not changed
   if (newUserChoice == userChoice) return;
 
   // Set the new user choice
   userChoice = newUserChoice;
-  localStorage.setItem('merlin-chatou-color-scheme', userChoice);
+  localStorage.setItem("merlin-chatou-color-scheme", userChoice);
 
   // Trigger the event for the new color scheme
   document.dispatchEvent(colorSchemeChangedEvent);
-}
-
-
+};
 
 /**
  * Return the current color scheme status
- * 
+ *
  * @returns {object} Current status
  * @property {"light" | "dark" | "light dark"} user - The user's selected preference.
  * @property {"light" | "dark"} current - The currently active color scheme on the page.
  */
 const get = () => {
-  return { "user" : userChoice, "current": getCurrent() };
-}
-
+  return { user: userChoice, current: getCurrent() };
+};
 
 /**
  * Returns the current color scheme applied to the page.
@@ -51,21 +68,18 @@ const get = () => {
  * @returns {"light" | "dark"} The current page color scheme.
  */
 const getCurrent = () => {
-  return (userChoice === 'light dark') ? systemColorScheme.get() : userChoice
-}
-
-
+  return userChoice === "light dark" ? systemColorScheme.get() : userChoice;
+};
 
 /**
  * Returns the user's selected color scheme preference.
  *
- * @returns {"light" | "system" | "dark"} The current user color scheme choice.
+ * @returns {"light" | "light dark" | "dark"} The current user color scheme choice.
  */
 
 const getUserChoice = () => {
   return userChoice;
-}
-
+};
 
 /**
  * Sets the callback function to be triggered when the color scheme changes.
@@ -82,24 +96,10 @@ const getUserChoice = () => {
  */
 
 const addEventListenerOnChange = (callback) => {
-  document.addEventListener('merlin-chatou-color-scheme-changed', () => {    
+  document.addEventListener("merlin-chatou-color-scheme-changed", () => {
     callback(get());
   });
-}
-
-
-/** 
- * Trigger the color scheme change event on system change
- * The event is only triggered if the user choice is system ("light dark")
- */
-systemColorScheme.addEventListenerOnChange((isDark) => {
-  // If the user choice is not system color scheme, exit
-  if (userChoice == "light dark") return;
-  // Otherwise, trigger the event on system settings change
-  document.dispatchEvent(colorSchemeChangedEvent);
-})
-
-
+};
 
 /**
  * Returns the system color scheme preference
@@ -108,16 +108,15 @@ systemColorScheme.addEventListenerOnChange((isDark) => {
  */
 const getSystem = systemColorScheme.get;
 
-
-
 // Export the color scheme utility module
 const colorScheme = {
+  setup,
   setUserChoice,
   getUserChoice,
   getSystem,
   getCurrent,
   get,
-  addEventListenerOnChange
+  addEventListenerOnChange,
 };
 
 export default colorScheme;

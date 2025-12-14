@@ -38,6 +38,18 @@ Import the package
 import colorScheme from "@merlin-chatou/color-scheme";
 ```
 
+### Client-side initialization (required)
+
+This package relies on browser-only APIs (`window`, `document`, `localStorage`, and `matchMedia`).
+For this reason, the module **must be initialized on the client side only**.
+
+Before using any other API, call `setup()` once after the application has mounted in the browser.
+
+``` js
+// Client-side initialization (must not run during SSR)
+colorScheme.setup();
+```
+
 ### Get User Choice
 
 The function `getUserChoice()` returns the current user choice:
@@ -50,7 +62,7 @@ If user choice has never been set, check if a previous choice has been recorded 
 
 ``` js
 // Should display "light", "light dark" or "dark"
-console.log (colorScheme.getUserChoice()}
+console.log (colorScheme.getUserChoice())
 ```
 
 ### Get System Color Scheme
@@ -61,7 +73,7 @@ The function `getSystem()` returns the system settings:
 
 ``` js
 // Should display "light" or "dark"
-console.log (colorScheme.getSystem()}
+console.log (colorScheme.getSystem())
 ```
 
 Note that the system color scheme is not necessary the same as the page. For example, system can be set to dark while the user selected light in the page. User choice overide system settings. 
@@ -75,7 +87,7 @@ The function `getCurrent()` returns the page current color scheme:
 
 ``` js
 // Should display "light" or "dark"
-console.log (colorScheme.getCurrent()}
+console.log (colorScheme.getCurrent())
 ```
 
 ### Get Current Status
@@ -86,7 +98,7 @@ The function `get()` returns an object containing the current color scheme statu
  
  ``` js
 // Log the current color scheme status
-console.log (colorScheme.getCurrent()}
+console.log (colorScheme.getCurrent())
 // {user: 'light dark', current: 'dark'}
 ```
 
@@ -118,7 +130,7 @@ colorScheme.addEventListenerOnChange((status) => {
     // Log new status in console
     console.log ('User choice', status.user);
     console.log ('Current scheme', status.current);
-}));
+});
 ```
 
 
