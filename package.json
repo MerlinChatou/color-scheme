@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/MerlinChatou/color-scheme#readme",
   "dependencies": {
-    "@merlin-chatou/system-color-scheme": "^1.0.2"
+    "@merlin-chatou/system-color-scheme": "^1.0.x"
   },
   "volta": {
     "node": "24.12.0"
