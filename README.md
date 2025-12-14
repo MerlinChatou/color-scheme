@@ -35,7 +35,7 @@ npm install @merlin-chatou@color-scheme
 Import the package
 
 ```js
-import systemColorScheme from "@merlin-chatou/system-color-scheme";
+import colorScheme from "@merlin-chatou/color-scheme";
 ```
 
 ### Get User Choice
