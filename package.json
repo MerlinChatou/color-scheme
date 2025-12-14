@@ -1,0 +1,38 @@
+{
+  "name": "@btfcss/color-scheme",
+  "version": "1.0.0",
+  "description": "Color Scheme (Light/Dark mode) manager for front-end JavaScript (user preference / system preference)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:MerlinChatou/color-scheme.git"
+  },
+  "keywords": [
+    "color",
+    "scheme",
+    "dark",
+    "light",
+    "theme",
+    "system",
+    "light",
+    "dark",
+    "user",
+    "preferences",
+    "settings"
+  ],
+  "author": "Merlin Chatou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MerlinChatou/color-scheme/issues"
+  },
+  "homepage": "https://github.com/MerlinChatou/color-scheme#readme",
+  "dependencies": {
+    "@merlin-chatou/system-color-scheme": "^1.0.2"
+  },
+  "volta": {
+    "node": "24.12.0"
+  }
+}
