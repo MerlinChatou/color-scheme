@@ -1,13 +1,13 @@
-import systemColorScheme from "@btfcss/system-color-scheme";
+import systemColorScheme from "@merlin-chatou/system-color-scheme";
 
 
 // User color scheme choice [ "light" | "light dark" | "dark"]
 // Check in local storage first, then set "light dark" as default
-let userChoice = localStorage.getItem('btfcss-color-scheme') || "light dark";
+let userChoice = localStorage.getItem('merlin-chatou-color-scheme') || "light dark";
 
 
 // Event triggered when then color scheme changes (from user or system)
-const colorSchemeChangedEvent = new CustomEvent("btfcss-color-scheme-changed");
+const colorSchemeChangedEvent = new CustomEvent("merlin-chatou-color-scheme-changed");
 
 
 
@@ -25,7 +25,7 @@ const setUserChoice = (newUserChoice) => {
 
   // Set the new user choice
   userChoice = newUserChoice;
-  localStorage.setItem('btfcss-color-scheme', userChoice);
+  localStorage.setItem('merlin-chatou-color-scheme', userChoice);
 
   // Trigger the event for the new color scheme
   document.dispatchEvent(colorSchemeChangedEvent);
@@ -82,7 +82,7 @@ const getUserChoice = () => {
  */
 
 const addEventListenerOnChange = (callback) => {
-  document.addEventListener('btfcss-color-scheme-changed', () => {    
+  document.addEventListener('merlin-chatou-color-scheme-changed', () => {    
     callback(get());
   });
 }

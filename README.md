@@ -27,7 +27,7 @@ Note that this package does not update CSS, but a callback function can be trigg
 ## Install 
 
 ```bash
-npm install btfcss@color-scheme
+npm install @merlin-chatou@color-scheme
 ```
 
 ## Usage
@@ -35,7 +35,7 @@ npm install btfcss@color-scheme
 Import the package
 
 ```js
-import colorScheme from "@btfcss/color-scheme";
+import systemColorScheme from "@merlin-chatou/system-color-scheme";
 ```
 
 ### Get User Choice
@@ -157,7 +157,7 @@ Select color scheme :
 
 ``` js
 import "./styles.css";
-import colorScheme from "@btfcss/color-scheme";
+import colorScheme from "@merlin-chatou/color-scheme";
 
 // Get the selector element
 const selector = document.getElementById("color-scheme-selector");
