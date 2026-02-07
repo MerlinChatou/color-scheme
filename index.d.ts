@@ -45,5 +45,5 @@ export interface ColorSchemeModule {
 }
 
 /** Default export: the color scheme module */
-declare const colorScheme: ColorSchemeModule;
+export const colorScheme: ColorSchemeModule;
 export default colorScheme;
